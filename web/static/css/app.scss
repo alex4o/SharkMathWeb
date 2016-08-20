@@ -1,0 +1,74 @@
+h2 {
+  color: red;
+}
+
+heading {
+	display: block;
+	width: 100vw;
+	height: 50px;
+	border-bottom: 2px solid gray;
+}
+
+#home {
+	display: flex;
+	> * {
+		margin: 0px;
+		padding: 0px;
+		flex: 1 0 150px;
+	}
+}
+
+
+.typeList{
+	position: relative;
+	background-color: #DFDFDF;
+		> .type {
+			box-sizing: border-box;
+			padding: 10px;
+			width: 100%;
+
+			&:hover {
+				background-color: #444;
+				color: white;
+				
+			}
+		}
+
+	
+}
+
+.propertyList{
+	background-color: #DFDFDF;
+
+}
+
+.sheet {
+	flex: 5 !important;
+	height: calc(100vh - 52px);
+	display: block;
+	> .item {
+		width: 100%;
+		padding: 1.125% 2.5% 1.125% 2.5%;
+		display: inline-block;
+		box-sizing: border-box;
+		
+		&-isdragging {
+			background-color: yellow;
+		}
+
+		> span {
+			padding: 20px;
+			border: 1px dotted black;
+			box-sizing: border-box;
+			display: inline-block;
+			width: 100%;
+			
+			> .remove {
+				float: right;
+			}
+
+		}
+	}
+
+
+}
