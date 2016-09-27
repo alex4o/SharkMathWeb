@@ -4,8 +4,9 @@ import ReactDOM,{ findDOMNode } from 'react-dom'
 import { DropTarget,DragSource,DragDropContext } from 'react-dnd';
 import update from 'react/lib/update';
 
-import Document from "./components/Document"
-import ProblemType from "./components/ProblemType"
+import Document from "../components/Document"
+import ProblemType from "../components/ProblemType"
+import Proerty from "../components/property"
 
 window.update = update
 
@@ -27,11 +28,15 @@ export default class Home extends Component {
 				<ProblemType name="Hello"/>
 				<ProblemType name="World"/>
 				<ProblemType name="Bulgaria"/>
+				<ProblemType name="Complex"/>
+				<ProblemType name="Simple"/>
 		
 		</div>
 			<Document />
 			<div className="propertyList">
-				<div><span>propertyName</span><input/></div>
+				<Proerty label="prop1"/>
+				<Proerty label="prop 2"/>
+				<Proerty label="onother property" />
 			</div>
 		</div>
 	}

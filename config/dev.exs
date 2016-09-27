@@ -1,5 +1,5 @@
 use Mix.Config
-
+import String
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
@@ -36,3 +36,6 @@ config :M4A, M4A.Repo,
   password: "BBkfbtPaqCzwapvHumAnShRxJiwNd1de",
   database: "soganiwi",
   pool_size: 1 # The amount of database connections in the pool
+
+config :openmaize_jwt,
+  signing_key: String.duplicate("qwertyui", 8)

@@ -3,9 +3,12 @@ import { DropTarget,DragSource,DragDropContext } from 'react-dnd';
 import update from 'react/lib/update';
 
 import Problem from "./ProblemOndocument"
+
 import { connect } from 'react-redux';
 import actions from "../actions/"
+
 let { addProblem, moveProblem, removeProblem } = actions
+
 console.log(addProblem())
 const Target = {
 	// drop(props, monitor, component){
@@ -43,7 +46,7 @@ const Target = {
 	}
 }
 
-@connect((state) => ({problems: state}))
+@connect((state) => ({problems: state.document}))
 @DropTarget("Problem", Target, (connect, monitor) => ({
 	// Call this function inside render()
 	// to let React DnD handle the drag events:
@@ -64,31 +67,6 @@ export default class Document extends Component  {
 		}
 	}
 
-/*	move(dragIndex, hoverIndex, item) {
-		const { list, counter } = this.state;
-		let dragCurrent = null
-		let splice = 1
-		if(dragIndex == -1){
-			splice = 0
-			console.log("Adding")
-			dragCurrent = { name: item, key: item + "-" + list.length }
-		}else{
-			dragCurrent = list[dragIndex];
-
-		}
-		if(dragCurrent == null){
-			debugger
-		}
-		this.setState(update(this.state, {
-			list: {
-				$splice: [
-					[dragIndex, splice],
-					[hoverIndex, 0, dragCurrent]
-				]
-			}
-		}));
-	}*/
-
 	move(dragIndex, hoverIndex, item){
 		if(dragIndex == -1){
 			let toadd = { name: item, key: item + "-" + this.state.list.length }
@@ -108,6 +86,9 @@ export default class Document extends Component  {
 	}
 
 	render(){
-		return this.props.connectDropTarget(<div className="sheet" >{this.state.list.map((item,index) => <Problem key={item.key} index={index} remove={this.remove.bind(this, index)} name={item.name} move={this.move.bind(this)}/>)}</div>)
+		return this.props.connectDropTarget(
+			<div className="sheet" >
+				{this.state.list.map((item,index) => <Problem key={item.key} index={index} remove={this.remove.bind(this, index)} name={item.name} move={this.move.bind(this)}/>)}
+			</div>)
 	}
 }

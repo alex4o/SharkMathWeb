@@ -7,22 +7,23 @@
 //   console.log("Success!")
 // })
 
+import axios from "axios"
 
-Array.prototype.spliceImmutable = function(startIndex, length, item){
-	let copy = [...this]
-	copy.splice(startIndex, length, item)
-	return copy
-}
+window.http = axios
 
 import { render } from 'react-dom'
 import React, { PropTypes, Component } from 'react'
 import {hashHistory, Router, Route, Link} from "react-router"
-import Home from "./home"
+import Home from "./pages/home"
+import Login from "./pages/login"
+import Register from "./pages/register"
 import { Provider } from 'react-redux'
 
 import reactor from "./reactor"
 
 import configureStore from "./store"
+import { syncHistoryWithStore } from 'react-router-redux'
+
 
 let store = configureStore()
 
@@ -34,22 +35,27 @@ class App extends Component {
 
 	render(){
 		return (
-			<Provider store={store}>
 			<div>
-				<heading>Hello world</heading> 
+				<heading>Math4All</heading> 
 				<div id="body"> 
 					{this.props.children} 
 				</div>
 			</div>
-			</Provider>)
+			)
 	}
 }
 
-var router = (
-<Router history={hashHistory}>
-	<Route path="/" component={App}>
-		<Route path="home" component={Home}/>
-	</Route>
-</Router>)
+let history = syncHistoryWithStore(hashHistory, store)
+
+let router = (
+<Provider store={store}>
+	<Router history={history}>
+		<Route path="/" component={App}>
+			<Route path="home" component={Home}/>
+			<Route path="login" component={Login}/>
+			<Route path="register" component={Register}/>
+		</Route>
+	</Router>
+</Provider>)
 
 render(router, document.getElementById('root'))

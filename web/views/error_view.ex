@@ -1,12 +1,20 @@
 defmodule M4A.ErrorView do
   use M4A.Web, :view
 
+  import M4A.ErrorHelpers
+
   def render("404.html", _assigns) do
     "Page not found"
   end
 
-  def render("500.html", _assigns) do
-    "Server internal error"
+  def render("500.html", %{errors: errors}) do
+   "Server internal error"
+  end
+
+  def render("error.json", %{changeset: changeset}) do
+    # When encoded, the changeset returns its errors
+    # as a JSON object. So we just pass it forward.
+    %{errors: translate_errors(changeset)}
   end
 
   # In case no render clause matches or no
