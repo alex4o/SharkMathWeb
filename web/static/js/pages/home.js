@@ -21,18 +21,22 @@ const Types = {
 @DragDropContext(HTML5Backend)
 export default class Home extends Component {
 
+	selectedType(type){
+		// update props accordingly
+	}
+
 	render(){
 		return <div id="home">
 		<div className="typeList">
 		
-				<ProblemType name="Hello"/>
-				<ProblemType name="World"/>
-				<ProblemType name="Bulgaria"/>
-				<ProblemType name="Complex"/>
-				<ProblemType name="Simple"/>
+				<ProblemType name="EquationDescriptor"/>
+				<ProblemType name="InequationDescriptor"/>
+				<ProblemType name="ExpressionDescriptor"/>
+				<ProblemType name="FracEquationDescriptor"/>
+				<ProblemType name="CompoundInequationDescriptor"/>
 		
 		</div>
-			<Document />
+			<Document onSelected={(i) => {}}/>
 			<div className="propertyList">
 				<Proerty label="prop1"/>
 				<Proerty label="prop 2"/>

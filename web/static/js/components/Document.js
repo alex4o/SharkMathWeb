@@ -7,7 +7,7 @@ import Problem from "./ProblemOndocument"
 import { connect } from 'react-redux';
 import actions from "../actions/"
 
-let { addProblem, moveProblem, removeProblem } = actions
+let { addProblem, moveProblem, removeProblem, selectProblem } = actions
 
 console.log(addProblem())
 const Target = {
@@ -62,7 +62,7 @@ export default class Document extends Component  {
 		super(props)
 
 		this.state = {
-			list:[ ...props.problems ],
+			...this.props.problems,
 			counter: 0
 		}
 	}
@@ -82,13 +82,20 @@ export default class Document extends Component  {
 	}
 	componentWillReceiveProps(newProps){
 		console.log(arguments)
-		this.setState({ list: newProps.problems })
+		this.setState({ ...newProps.problems })
+	}
+
+	select(problemType){
+		this.props.dispatch(selectProblem(problemType.index))
+
+
+		console.log("Problem: ", problemType)
 	}
 
 	render(){
 		return this.props.connectDropTarget(
 			<div className="sheet" >
-				{this.state.list.map((item,index) => <Problem key={item.key} index={index} remove={this.remove.bind(this, index)} name={item.name} move={this.move.bind(this)}/>)}
+				{this.state.list.map((item,index) => <Problem key={item.key} index={index} select={this.select.bind(this)} isSelected={index==this.state.selected} remove={this.remove.bind(this, index)} name={item.name} move={this.move.bind(this)}/>)}
 			</div>)
 	}
 }

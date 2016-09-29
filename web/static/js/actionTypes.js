@@ -6,4 +6,5 @@ export default keyMirror({
 	LOAD_PROBLEMS: null,
 	SAVE_PROBLEMS: null,
 	REMOVE_PROBLEM: null,
+	SELECT_PROBLEM: null,
 })

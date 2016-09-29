@@ -84,6 +84,10 @@ heading {
 	display: block;
 	overflow-y: scroll !important;
 	> .item {
+		&.selected {
+			background-color: $color-primary-3;
+		}
+
 		width: 100%;
 		padding: 1.125% 2.5% 1.125% 2.5%;
 		display: inline-block;

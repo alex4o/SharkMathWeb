@@ -2,7 +2,6 @@ import React, {Component} from "react"
 import { DropTarget,DragSource,DragDropContext } from 'react-dnd';
 import classnames from "classnames"
 
-import actions, { addProblem, moveProblem, removeProblem } from "../actions/"
 
 
 const Target = {
@@ -47,11 +46,11 @@ const Source = {
 }))
 export default class ProblemOnDocument extends Component {
 	render(){
-		const { text, isDragging, connectDragSource, connectDropTarget,isOverCurrent,remove } = this.props;
+		const { text, isDragging, connectDragSource, connectDropTarget,isOverCurrent,remove,isSelected } = this.props;
 		//let opacity = isDragging ? 0 : 1;
 		console.log(isDragging)
 		return connectDragSource(connectDropTarget(
-			<div className={classnames({"item": true, "item-isdragging": isDragging})}><span>{this.props.name}<div onClick={remove} className="remove">X</div></span></div>
+			<div onClick={e => this.props.select(this.props)}  className={classnames({"item": true, "item-isdragging": isDragging, "selected": isSelected})}><span>{this.props.name}<div onClick={remove} className="remove">X</div></span></div>
 			))
 	}
 }
