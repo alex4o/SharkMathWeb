@@ -40,7 +40,7 @@ const Target = {
 		if(monitor.isOver({ shallow: true })){
 			component.move(dragIndex, hoverIndex, monitor.getItem().name);
 			monitor.getItem().index = hoverIndex;
-			console.log("New index: ", hoverIndex, dragIndex, props)
+			//console.log("New index: ", hoverIndex, dragIndex, props)
 		}
 
 	}

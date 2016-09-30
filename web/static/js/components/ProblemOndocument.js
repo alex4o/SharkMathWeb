@@ -30,7 +30,7 @@ const Source = {
 		return { name: props.name, index: props.index }
 	},
 	isDragging(props, monitor){
-		console.log("is-dragging: ", props, monitor.getItem())
+		//console.log("is-dragging: ", props, monitor.getItem())
 		return props.index === monitor.getItem().index
 	}
 }
@@ -48,9 +48,9 @@ export default class ProblemOnDocument extends Component {
 	render(){
 		const { text, isDragging, connectDragSource, connectDropTarget,isOverCurrent,remove,isSelected } = this.props;
 		//let opacity = isDragging ? 0 : 1;
-		console.log(isDragging)
+		//console.log(isDragging)
 		return connectDragSource(connectDropTarget(
-			<div onClick={e => this.props.select(this.props)}  className={classnames({"item": true, "item-isdragging": isDragging, "selected": isSelected})}><span>{this.props.name}<div onClick={remove} className="remove">X</div></span></div>
+			<div className={classnames({"item": true, "item-isdragging": isDragging, "selected": isSelected})}><span onClick={e => this.props.select(this.props)} >{this.props.name}<div onClick={e => { if (e.stopPropagation) e.stopPropagation(); remove(e) } } className="remove">X</div></span></div>
 			))
 	}
 }

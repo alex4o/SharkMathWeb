@@ -6,8 +6,9 @@ let counter = -1
 const Source = {
 	beginDrag(props, monitor, component){
 		//console.log(props, monitor, component)
-		counter += 1
-		return { name: props.name + "-" + counter , index: -1 }
+		//component.props.wtf = 12
+		//props.index = -1
+		return { name: props.name , index: -1 }
 	},
 	endDrag(props, monitor, component) {
 		if (!monitor.didDrop()) {
@@ -20,7 +21,7 @@ const Source = {
 		//console.log(item)
 	},
 	isDragging(props, monitor){
-		//console.log(props, monitor.getItem())
+		console.log("Dragging type", props, monitor.getItem())
 		return props.index === monitor.getItem().index
 	}
 		
@@ -31,8 +32,8 @@ const Source = {
 
 
 @DragSource("Problem", Source, (connect, monitor) => ({
-	connectDragSource: connect.dragSource(),
-	isDragging: monitor.isDragging()
+	connectDragSource: connect.dragSource()//,
+	//isDragging: monitor.isDragging()
 }))
 export default class Type extends Component  {
 	render(){
